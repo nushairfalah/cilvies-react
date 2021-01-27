@@ -6,6 +6,7 @@ export default class CreateItem extends Component {
         this.onChangeTitle = this.onChangeTitle.bind(this)
         this.onChangeDescription = this.onChangeDescription.bind(this)
         this.onChangeUrl = this.onChangeUrl.bind(this)
+        this.onChangeStatus = this.onChangeStatus.bind(this)
         this.saveItem = this.saveItem.bind(this)
         this.newList = this.newList.bind(this)
 
@@ -13,7 +14,8 @@ export default class CreateItem extends Component {
             id: null,
             title: "",
             description: "",
-            url: ""
+            imageurl: "",
+            status: 0,
         }
     }
 
@@ -31,7 +33,13 @@ export default class CreateItem extends Component {
 
     onChangeUrl(e) {
         this.setState({
-            url: e.target.value,
+            imageurl: e.target.value,
+        })
+    }
+
+    onChangeStatus(e) {
+        this.setState({
+            status: e.target.value
         })
     }
 
@@ -39,7 +47,8 @@ export default class CreateItem extends Component {
         let data = {
             title: this.state.title,
             description: this.state.description,
-            url: this.state.url,
+            imageurl: this.state.imageurl,
+            status: this.state.status,
         }
     }
 
@@ -48,7 +57,8 @@ export default class CreateItem extends Component {
             id: null,
             title: "",
             description: "",
-            url: "",
+            imageurl: "",
+            status: 0,
         })
     }
 
@@ -69,29 +79,17 @@ export default class CreateItem extends Component {
 
                 <div className="form-group">
                     <label htmlFor="">Image URL: </label>
-                    <input type="text" className="form-control" name="imgUrl" value={this.state.url} onChange={this.onChangeUrl} required />
+                    <input type="text" className="form-control" name="imageurl" value={this.state.imageurl} onChange={this.onChangeUrl} required />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="">Status: </label>
+                    <input type="text" className="form-control" name="status" value={this.state.status} onChange={this.onChangeStatus} required />
                 </div>
 
                 <button className="btn btn-success" type="submit" onClick={this.saveItem}>Submit</button>
 
             </div>
-
-            // {/* <div className="container text-center">
-
-            //     <form className="form-signin">
-
-            //         <h1 className="h3 mb-3 font-weight-normal">Add Item</h1>
-
-            //         <label for="title" className="sr-only">Title</label>
-            //         <input type="text" id="inputText" className="form-control" width="150" placeholder="Title" required autofocus />
-            //         <label for="description" className="sr-only">Description</label>
-            //         <input type="text" id="inputText" className="form-control" placeholder="Description" required />
-            //         <label for="url" className="sr-only">Image URL</label>
-            //         <input type="text" id="inputText" className="form-control" placeholder="Image URL" required />
-            //         <button className="btn btn-lg btn-primary btn-block" type="submit">Add</button>
-            //     </form>
-
-            // </div> */}
 
         )
 
