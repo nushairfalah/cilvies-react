@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import RentalService from "../Services/RentalService"
 
 export default class CreateItem extends Component {
     constructor(props) {
@@ -50,6 +51,14 @@ export default class CreateItem extends Component {
             imageurl: this.state.imageurl,
             status: this.state.status,
         }
+
+        RentalService.create(data)
+            .then(() => {
+                this.props.history.goBack()
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     newList() {

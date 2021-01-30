@@ -2,6 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import './App.css';
 import { Switch, Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import CreateItem from './components/CreateItemPage'
+import ListItem from './components/ListItemPage'
+import EditItem from './components/EditItem'
 
 function App() {
   return (
@@ -36,7 +38,9 @@ function App() {
 
         {/* ---------------------------- CONTENTS ------------------------------- */}
         <Switch>
+          <Route exact path="/users" component={ListItem} />
           <Route exact path="/users/add" component={CreateItem} />
+          <Route path="/users/:id" component={EditItem} />
         </Switch>
 
       </Router>
