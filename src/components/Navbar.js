@@ -4,17 +4,17 @@ import { BsFillPlusCircleFill } from "react-icons/bs"
 import CreateItem from './CreateItemPage'
 import ListItem from './ListItemPage'
 import EditItem from './EditItem'
+import Logo from '../just-do-it.png'
 
 const Navbar = () => {
     return (
-        <>
-            <Router>
+        <Router>
 
-                {/* ---------------------------- NAVBAR LINKS ------------------------------- */}
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-
+            {/* ---------------------------- NAVBAR LINKS ------------------------------- */}
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div className="container">
                     <Link to={"/"} className="navbar-brand">
-                        <img className="logo" src="" alt="logo-brand" />
+                        <img className="logo" src={Logo} alt="logo-brand" />
                     </Link>
 
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,26 +24,42 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item active">
-                                <Link to={"/users"} className="nav-link">LIST DVD</Link>
+                                <Link to={"/users"} className="nav-link">list dvd</Link>
+                            </li>
+                            <li className="nav-item active">
+                                <Link to={"/users"} className="nav-link">list dvd</Link>
+                            </li>
+                            <li className="nav-item active">
+                                <Link to={"/users"} className="nav-link">list dvd</Link>
+                            </li>
+                            <li className="nav-item active">
+                                <Link to={"/users"} className="nav-link">list dvd</Link>
+                            </li>
+                            <li className="nav-item active">
+                                <Link to={"/users"} className="nav-link">list dvd</Link>
+                            </li>
+                            <li className="nav-item active">
+                                <Link to={"/users"} className="nav-link">list dvd</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to={"/users/add"} className="nav-link"><BsFillPlusCircleFill /> ADD</Link>
+                                <Link to={"/users/add"} className="nav-link"><BsFillPlusCircleFill /> add</Link>
                             </li>
                         </ul>
                     </div>
+                </div>
+            </nav>
 
-                </nav>
 
-                {/* ---------------------------- ROUTE CONTENTS ------------------------------- */}
+            {/* ---------------------------- ROUTE CONTENTS ------------------------------- */}
+            <div className="container">
                 <Switch>
                     <Route exact path="/users" component={ListItem} />
                     <Route exact path="/users/add" component={CreateItem} />
                     <Route path="/users/:id" component={EditItem} />
                 </Switch>
+            </div>
 
-            </Router>
-
-        </>
+        </Router>
     )
 }
 

@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import RentalService from "../Services/RentalService"
 import { Link } from "react-router-dom"
 import { FaEye, FaEyeSlash, FaRegTrashAlt, FaPencilAlt } from "react-icons/fa"
-import { BsFillPlusCircleFill } from "react-icons/bs"
 
 export default class ListItem extends Component {
     constructor(props) {
@@ -11,7 +10,6 @@ export default class ListItem extends Component {
         this.refreshList = this.refreshList.bind(this)
         this.activeList = this.activeList.bind(this)
         this.getList = this.getList.bind(this)
-        // this.deleteList = this.deleteList.bind(this)
 
         this.state = {
             Lists: [],
@@ -65,15 +63,16 @@ export default class ListItem extends Component {
             })
     }
 
-    // deleteList(id) {
-    //     RentalService.delete()
-    //         .then((response) => {
-    //             this.getList(id)
-    //         })
-    //         .catch((error) => {
-    //             console.log(error)
-    //         })
-    // }
+    deleteDVD(id) {
+        RentalService.delete(id)
+            .then((response) => {
+                alert("data deleted")
+                this.refreshList()
+            })
+            .catch((error) => {
+                alert("error")
+            })
+    }
 
     render() {
         const { Lists, currentList, currentIndex } = this.state;
@@ -81,13 +80,19 @@ export default class ListItem extends Component {
         return (
             <>
                 <div className="list row">
+
                     <div className="col-md-6">
                         <h3>DVD List</h3>
                         <ul className="list-group">
-                            {Lists && Lists.map((List, index) => (
-                                <li className={"list-group-item " + (index === currentIndex ? "active" : "")} onClick={() => this.activeList(List, index)} key={index}>
+                            {Lists && Lists.map((dvd, index) => (
+                                <li className={"list-group-item " + (index === currentIndex ? "active" : "")} onClick={() => this.activeList(dvd, index)} key={index}>
                                     <div className="d-flex justify-content-between">
-                                        {List.title} <div>{List.status === 0 ? <FaEyeSlash /> : <FaEye />} <FaPencilAlt /> <FaRegTrashAlt /></div>
+                                        {dvd.title}
+                                        <div>
+                                            {dvd.status === 0 ? <FaEyeSlash /> : <FaEye />}{" "}
+                                            <Link to={"/users/" + dvd.id}><FaPencilAlt /></Link>{" "}
+                                            <button onClick={() => this.deleteDVD(dvd.id)}><FaRegTrashAlt /></button>
+                                        </div>
                                     </div>
                                 </li>
                             ))}
@@ -99,7 +104,6 @@ export default class ListItem extends Component {
                             <div>
 
                                 <h4>Detail</h4>
-                                <Link to={"/users/" + currentList.id} className="badge badge-pill badge-success">Edit</Link>
 
                                 <div>
                                     <img className="size-image" src={currentList.imageurl} alt="Cover DVD" />
@@ -120,7 +124,6 @@ export default class ListItem extends Component {
                             </div>
                         ) : (
                                 <div>
-                                    <br />
                                     <h4>Detail</h4>
                                 </div>
                             )}
