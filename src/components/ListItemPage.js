@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import RentalService from "../Services/RentalService"
 import { Link } from "react-router-dom"
 import { FaEye, FaEyeSlash, FaRegTrashAlt, FaPencilAlt } from "react-icons/fa"
+import { BsFillPlusCircleFill } from "react-icons/bs"
 
 export default class ListItem extends Component {
     constructor(props) {
