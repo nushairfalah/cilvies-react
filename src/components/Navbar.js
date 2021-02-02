@@ -24,22 +24,7 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item active">
-                                <Link to={"/users"} className="nav-link">list dvd</Link>
-                            </li>
-                            <li className="nav-item active">
-                                <Link to={"/users"} className="nav-link">list dvd</Link>
-                            </li>
-                            <li className="nav-item active">
-                                <Link to={"/users"} className="nav-link">list dvd</Link>
-                            </li>
-                            <li className="nav-item active">
-                                <Link to={"/users"} className="nav-link">list dvd</Link>
-                            </li>
-                            <li className="nav-item active">
-                                <Link to={"/users"} className="nav-link">list dvd</Link>
-                            </li>
-                            <li className="nav-item active">
-                                <Link to={"/users"} className="nav-link">list dvd</Link>
+                                <Link to={"/users"} className="nav-link">movies</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to={"/users/add"} className="nav-link"><BsFillPlusCircleFill /> add</Link>

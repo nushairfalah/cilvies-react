@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import RentalService from "../Services/RentalService"
+import { FaToggleOff, FaToggleOn } from "react-icons/fa"
 
 export default class CreateItem extends Component {
     constructor(props) {
@@ -7,17 +8,24 @@ export default class CreateItem extends Component {
         this.onChangeTitle = this.onChangeTitle.bind(this)
         this.onChangeDescription = this.onChangeDescription.bind(this)
         this.onChangeUrl = this.onChangeUrl.bind(this)
-        this.onChangeStatus = this.onChangeStatus.bind(this)
+        // this.onChangeStatus = this.onChangeStatus.bind(this)
         this.saveItem = this.saveItem.bind(this)
         this.newList = this.newList.bind(this)
+        this.toggleButton = this.toggleButton.bind(this)
 
         this.state = {
             id: null,
             title: "",
             description: "",
             imageurl: "",
-            status: 0,
+            status: false,
         }
+    }
+
+    toggleButton() {
+        this.setState({
+            status: !this.state.status
+        })
     }
 
     onChangeTitle(e) {
@@ -38,11 +46,11 @@ export default class CreateItem extends Component {
         })
     }
 
-    onChangeStatus(e) {
-        this.setState({
-            status: e.target.value
-        })
-    }
+    // onChangeStatus(e) {
+    //     this.setState({
+    //         status: e.target.value
+    //     })
+    // }
 
     saveItem() {
         let data = {
@@ -58,6 +66,7 @@ export default class CreateItem extends Component {
             })
             .catch((error) => {
                 console.log(error)
+                alert(error)
             })
     }
 
@@ -67,7 +76,7 @@ export default class CreateItem extends Component {
             title: "",
             description: "",
             imageurl: "",
-            status: 0,
+            status: false,
         })
     }
 
@@ -78,26 +87,27 @@ export default class CreateItem extends Component {
 
                 <div className="form-group">
                     <label htmlFor="">Movie Title: </label>
-                    <input type="text" className="form-control" name="title" value={this.state.title} onChange={this.onChangeTitle} required />
+                    <input type="text" className="form-control" name="title" value={this.state.title} onChange={this.onChangeTitle} placeholder="Title" required />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="">Description: </label>
-                    <textarea type="text" className="form-control" style={{ height: "200px" }} name="description" value={this.state.description} onChange={this.onChangeDescription} required></textarea>
+                    <textarea type="text" className="form-control" style={{ height: "200px" }} name="description" value={this.state.description} onChange={this.onChangeDescription} placeholder="Description" required></textarea>
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="">Image URL: </label>
-                    <input type="text" className="form-control" name="imageurl" value={this.state.imageurl} onChange={this.onChangeUrl} required />
+                    <input type="text" className="form-control" name="imageurl" value={this.state.imageurl} onChange={this.onChangeUrl} placeholder="URL" required />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="">Status: </label>
-                    <input type="text" className="form-control" name="status" value={this.state.status} onChange={this.onChangeStatus} required />
+                    <button className="btn-toggle" name="status" value={this.state.status} onClick={this.toggleButton}>{this.state.status ? <FaToggleOn size="2rem" /> : <FaToggleOff size="2rem" />}</button>
                 </div>
-
-                <button className="btn btn-success" type="submit" onClick={this.saveItem}>Submit</button>
-
+                <div className="d-flex justify-content-between">
+                    <button className="btn btn-dark" onClick={() => this.props.history.goBack()}>{`< Back`}</button>
+                    <button className="btn btn-success" type="submit" onClick={this.saveItem}>Submit</button>
+                </div>
             </div>
 
         )

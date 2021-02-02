@@ -2,6 +2,8 @@ import React, { Component } from "react"
 import RentalService from "../Services/RentalService"
 import { Link } from "react-router-dom"
 import { FaEye, FaEyeSlash, FaRegTrashAlt, FaPencilAlt } from "react-icons/fa"
+import { BsFillPlusCircleFill } from "react-icons/bs"
+import { MdKeyboardArrowDown } from "react-icons/md"
 
 export default class ListItem extends Component {
     constructor(props) {
@@ -66,7 +68,6 @@ export default class ListItem extends Component {
     deleteDVD(id) {
         RentalService.delete(id)
             .then((response) => {
-                alert("data deleted")
                 this.refreshList()
             })
             .catch((error) => {
@@ -76,22 +77,34 @@ export default class ListItem extends Component {
 
     render() {
         const { Lists, currentList, currentIndex } = this.state;
+        // const confirm = window.confirm("Are you sure ?")
+        // const remove = this.deleteDVD()
+        // if (confirm) {
+        //     return remove;
+        // }
 
         return (
             <>
                 <div className="list row">
 
                     <div className="col-md-6">
-                        <h3>DVD List</h3>
+
+                        <div className="d-flex justify-content-between">
+                            <h3 className="detail-strong">Movie List<MdKeyboardArrowDown /></h3>
+                            <Link to={"/users/add"}><BsFillPlusCircleFill className="add-link" size="2rem" /></Link>
+                        </div>
+
                         <ul className="list-group">
+
                             {Lists && Lists.map((dvd, index) => (
                                 <li className={"list-group-item " + (index === currentIndex ? "active" : "")} onClick={() => this.activeList(dvd, index)} key={index}>
                                     <div className="d-flex justify-content-between">
                                         {dvd.title}
+
                                         <div>
-                                            {dvd.status === 0 ? <FaEyeSlash /> : <FaEye />}{" "}
-                                            <Link to={"/users/" + dvd.id}><FaPencilAlt /></Link>{" "}
-                                            <button onClick={() => this.deleteDVD(dvd.id)}><FaRegTrashAlt /></button>
+                                            <button className="btn-link">{dvd.status === 0 ? <FaEyeSlash /> : <FaEye />}</button>
+                                            <button className="btn-link"><Link className="link-edit" to={"/users/" + dvd.id}><FaPencilAlt /></Link></button>
+                                            <button className="btn-link" onClick={() => this.deleteDVD(dvd.id)}><FaRegTrashAlt /></button>
                                         </div>
                                     </div>
                                 </li>
@@ -102,29 +115,28 @@ export default class ListItem extends Component {
                     <div className="col-md-6">
                         {currentList ? (
                             <div>
+                                <h4 className="detail-strong">Detail</h4>
 
-                                <h4>Detail</h4>
-
-                                <div>
+                                <div className="group-detail">
                                     <img className="size-image" src={currentList.imageurl} alt="Cover DVD" />
                                 </div>
-                                <div>
-                                    <label>
+                                <div className="group-detail">
+                                    <label className="detail-strong">
                                         <strong>Title:</strong>
                                     </label>
-                                    <p>{currentList.title}</p>
+                                    <p className="detail-form">{currentList.title}</p>
                                 </div>
-                                <div>
-                                    <label>
+                                <div className="group-detail">
+                                    <label className="detail-strong">
                                         <strong>Description:</strong>
                                     </label>
-                                    <p>{currentList.description}</p>
+                                    <p className="detail-form">{currentList.description}</p>
                                 </div>
 
                             </div>
                         ) : (
                                 <div>
-                                    <h4>Detail</h4>
+                                    <h4 className="detail-strong">Detail</h4>
                                 </div>
                             )}
                     </div>
