@@ -8,7 +8,6 @@ export default class CreateItem extends Component {
         this.onChangeTitle = this.onChangeTitle.bind(this)
         this.onChangeDescription = this.onChangeDescription.bind(this)
         this.onChangeUrl = this.onChangeUrl.bind(this)
-        // this.onChangeStatus = this.onChangeStatus.bind(this)
         this.saveItem = this.saveItem.bind(this)
         this.newList = this.newList.bind(this)
         this.toggleButton = this.toggleButton.bind(this)
@@ -22,7 +21,9 @@ export default class CreateItem extends Component {
         }
     }
 
-    toggleButton() {
+    toggleButton(e) {
+        // e.preventDefault()
+        console.log(this.state.status)
         this.setState({
             status: !this.state.status
         })
@@ -45,12 +46,6 @@ export default class CreateItem extends Component {
             imageurl: e.target.value,
         })
     }
-
-    // onChangeStatus(e) {
-    //     this.setState({
-    //         status: e.target.value
-    //     })
-    // }
 
     saveItem() {
         let data = {
@@ -108,9 +103,9 @@ export default class CreateItem extends Component {
                     <button className="btn btn-dark" onClick={() => this.props.history.goBack()}>{`< Back`}</button>
                     <button className="btn btn-success" type="submit" onClick={this.saveItem}>Submit</button>
                 </div>
+
             </div>
 
         )
-
     }
 }

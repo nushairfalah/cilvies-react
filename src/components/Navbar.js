@@ -13,7 +13,7 @@ const Navbar = () => {
             {/* ---------------------------- NAVBAR LINKS ------------------------------- */}
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container">
-                    <Link to={"/"} className="navbar-brand">
+                    <Link to={"/movies"} className="navbar-brand">
                         <img className="logo" src={Logo} alt="logo-brand" />
                     </Link>
 
@@ -23,11 +23,14 @@ const Navbar = () => {
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ml-auto">
+                            <li className="nav-item">
+                                <Link to={"/movies"} className="nav-link">home</Link>
+                            </li>
                             <li className="nav-item active">
-                                <Link to={"/users"} className="nav-link">movies</Link>
+                                <Link to={"/movies"} className="nav-link">movies</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to={"/users/add"} className="nav-link"><BsFillPlusCircleFill /> add</Link>
+                                <Link to={"/movies/add"} className="nav-link"><BsFillPlusCircleFill /> add</Link>
                             </li>
                         </ul>
                     </div>
@@ -38,9 +41,9 @@ const Navbar = () => {
             {/* ---------------------------- ROUTE CONTENTS ------------------------------- */}
             <div className="container">
                 <Switch>
-                    <Route exact path="/users" component={ListItem} />
-                    <Route exact path="/users/add" component={CreateItem} />
-                    <Route path="/users/:id" component={EditItem} />
+                    <Route exact path="/movies" component={ListItem} />
+                    <Route exact path="/movies/add" component={CreateItem} />
+                    <Route path="/movies/:id" component={EditItem} />
                 </Switch>
             </div>
 

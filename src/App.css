@@ -57,12 +57,12 @@ nav ul li {
 .navbar-nav > li > .nav-link.active,
 .navbar-nav > li > .nav-link.active:focus {
   border-top: 0.1875rem solid var(--primary-orange);
-  transition-duration: 500ms;
+  transition-duration: 600ms;
 }
 
 .navbar-nav > li > .nav-link:hover {
   border-top: 0.1875rem solid var(--primary-orange);
-  transition-duration: 500ms;
+  transition-duration: 600ms;
 }
 
 .list-group-item.active {
@@ -106,6 +106,7 @@ h3 {
 
 .btn-link {
   background: none;
+  /* background-color: rgb(223, 248, 223); */
   border: none;
   border-radius: none;
   color: #343a40;
@@ -149,3 +150,4 @@ h3 {
   color: gray;
   transition-duration: 400ms;
 }
+

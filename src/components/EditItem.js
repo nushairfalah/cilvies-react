@@ -8,12 +8,10 @@ export default class EditList extends Component {
         this.onChangeTitle = this.onChangeTitle.bind(this)
         this.onChangeDescription = this.onChangeDescription.bind(this)
         this.onChangeUrl = this.onChangeUrl.bind(this)
-        // this.onChangeStatus = this.onChangeStatus.bind(this)
         this.getList = this.getList.bind(this)
         this.updateList = this.updateList.bind(this)
         this.deleteList = this.deleteList.bind(this)
         this.toggleButton = this.toggleButton.bind(this)
-        // this.onClickToggleButton = this.onClickToggleButton.bind(this)
 
         this.state = {
             currentList: {
@@ -64,44 +62,21 @@ export default class EditList extends Component {
         }))
     }
 
-    // onChangeStatus(e) {
-    //     const status = e.target.value
-
-    //     this.setState((prevState) => ({
-    //         currentList: {
-    //             ...prevState.currentList,
-    //             status: status,
-    //         },
-    //     }))
-    // }
-
-    toggleButton(e) {
-        // const status = e.target.value
-
-        // this.setState((prevState) => ({
-        //     ...prevState.currentList,
-        //     status: !this.state.currentList.status,
-        // }))
-        console.log(e)
+    toggleButton() {
+        console.log(this.state.currentList.status)
         this.setState({
             currentList: {
+                ...this.state.currentList,
                 status: !this.state.currentList.status,
             }
         })
     }
 
-    // onClickToggleButton() {
-    //     this.setState({
-    //         currentList: {
-    //             status: !this.state.currentList.status,
-    //         }
-    //     })
-    // }
-
     getList(id) {
         RentalService.retrieveById(id)
             .then((response) => {
                 const data = response.data
+                console.log(data)
                 this.setState({
                     currentList: data,
                 })
@@ -112,6 +87,7 @@ export default class EditList extends Component {
     }
 
     updateList() {
+        console.log(this.state)
         RentalService.update(this.state.currentList.id, {
             title: this.state.currentList.title,
             description: this.state.currentList.description,
@@ -169,7 +145,6 @@ export default class EditList extends Component {
 
                         <div className="form-group">
                             <label>Status: </label>
-                            {/* <input type="text" className="form-control" name="status" value={currentList.status} onChange={this.onChangeStatus} required /> */}
                             <button className="btn-toggle" name="status" value={currentList.status} onClick={this.toggleButton}>{currentList.status ? <FaToggleOn size="2rem" /> : <FaToggleOff size="2rem" />}</button>
                         </div>
 
