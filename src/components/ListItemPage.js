@@ -134,7 +134,7 @@ export default class ListItem extends Component {
                                         <span className="dvd-title">{dvd.title}</span>
                                         <div>
                                             <button className="btn-link">{dvd.status === 0 ? <GoEyeClosed /> : <GoEye />}</button>
-                                            <button className="btn-link"><Link className="link-edit" to={"/movies/" + dvd.id}><RiEditLine /></Link></button>
+                                            <button className="btn-link"><Link to={"/movies/" + dvd.id} className="link-edit"><RiEditLine /></Link></button>
                                             <button className="btn-link" onClick={() => { window.confirm("Delete this movie?") && this.deleteDVD(dvd.id) }}><FaRegTrashAlt /></button>
                                         </div>
                                     </div>
