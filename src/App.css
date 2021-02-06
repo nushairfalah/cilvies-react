@@ -151,3 +151,6 @@ h3 {
   transition-duration: 400ms;
 }
 
+.dvd-title {
+  cursor: pointer;
+}

@@ -6,7 +6,7 @@ import ListItem from './ListItemPage'
 import EditItem from './EditItem'
 import Logo from '../just-do-it.png'
 
-const Navbar = () => {
+const Header = () => {
     return (
         <Router>
 
@@ -51,4 +51,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default Header

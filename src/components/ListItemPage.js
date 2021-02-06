@@ -92,7 +92,7 @@ export default class ListItem extends Component {
             currentIndex: -1,
         })
         // Call API to search movies by title
-        RentalService.searchByTitle(this.state.searchTitle)
+        RentalService.retrieveAll(this.state.searchTitle)
             .then((response) => {
                 const data = response.data;
                 this.setState({
@@ -106,16 +106,13 @@ export default class ListItem extends Component {
 
     render() {
         const { Lists, currentList, currentIndex, searchTitle } = this.state;
-        const filterByTitle = Lists.filter(dvd => {
-            return dvd.title.toLowerCase().indexOf(searchTitle.toLowerCase()) !== -1
-        })
 
         return (
             <>
                 <div className="list row">
 
                     <div className="col-md-8">
-                        <div className="input-group mb-5">
+                        <div className="input-group mb-4">
                             <input type="text" className="form-control" value={searchTitle} onChange={this.onChangeSearch} placeholder="Search by title" />
                             <div className="input-group-append">
                                 <button className="btn btn-outline-secondary" type="button" onClick={this.searchTitle}>Search</button>
@@ -130,15 +127,14 @@ export default class ListItem extends Component {
                         </div>
 
                         <ul className="list-group">
-                            {Lists && filterByTitle.map((dvd, index) => (
+                            {Lists && Lists.map((dvd, index) => (
                                 <li className={"list-group-item " + (index === currentIndex ? "active" : "")} onClick={() => this.activeList(dvd, index)} key={index}>
                                     <div className="d-flex justify-content-between">
-                                        {dvd.title}
-
+                                        <span className="dvd-title">{dvd.title}</span>
                                         <div>
                                             <button className="btn-link">{dvd.status === 0 ? <GoEyeClosed /> : <GoEye />}</button>
                                             <button className="btn-link"><Link className="link-edit" to={"/movies/" + dvd.id}><RiEditLine /></Link></button>
-                                            <button className="btn-link" onClick={() => { if (window.confirm("Delete this movie?")) { this.deleteDVD(dvd.id) } }}><FaRegTrashAlt /></button>
+                                            <button className="btn-link" onClick={() => { window.confirm("Delete this movie?") && this.deleteDVD(dvd.id) }}><FaRegTrashAlt /></button>
                                         </div>
                                     </div>
                                 </li>

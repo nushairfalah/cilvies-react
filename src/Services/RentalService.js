@@ -1,11 +1,12 @@
 import httpClient from '../Common/Http'
 
 class RentalService {
-    searchByTitle(title) {
-        return httpClient.get(`/movies?title=${title}`)
-    }
-    retrieveAll() {
-        return httpClient.get('/movies/')
+    retrieveAll(title) {
+        if (title) {
+            return httpClient.get(`/movies/?title=${title}`)
+        } else {
+            return httpClient.get('/movies/')
+        }
     }
     retrieveById(id) {
         return httpClient.get(`/movies/${id}`)
