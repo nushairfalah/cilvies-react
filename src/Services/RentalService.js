@@ -7,6 +7,7 @@ class RentalService {
         } else {
             return httpClient.get('/movies/')
         }
+        // title ? (httpClient.get(`/movies/?title=${title}`)) : (httpClient.get('/movies/'))
     }
     retrieveById(id) {
         return httpClient.get(`/movies/${id}`)
