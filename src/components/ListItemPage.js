@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import RentalService from "../Services/RentalService";
 import { Link } from "react-router-dom";
 import { FaRegTrashAlt, FaPlus } from "react-icons/fa";
-import { GoEye, GoEyeClosed } from "react-icons/go";
+import { GoEye, GoEyeClosed, GoSearch } from "react-icons/go";
 import { RiEditLine } from "react-icons/ri"
 import { MdKeyboardArrowDown } from "react-icons/md";
 
@@ -111,11 +111,12 @@ export default class ListItem extends Component {
             <>
                 <div className="list row">
 
-                    <div className="col-md-8">
+                    <div className="sticky-top col-md-12">
                         <div className="input-group mb-4">
-                            <input type="text" className="form-control" value={searchTitle} onChange={this.onChangeSearch} placeholder="Search by title" />
+                            <input type="text" className="form-control" value={searchTitle} onChange={this.onChangeSearch} placeholder="Search by title..." autoFocus />
                             <div className="input-group-append">
-                                <button className="btn btn-outline-secondary" type="button" onClick={this.searchTitle}>Search</button>
+                                <button className="btn btn-outline-secondary" type="button" onClick={this.searchTitle}><GoSearch className="add-link" size="1.3rem" /></button>
+                                <button className="btn btn-outline-secondary" type="button"><Link to={"/movies/add"}><FaPlus className="add-link" size="1.3rem" /></Link></button>
                             </div>
                         </div>
                     </div>
@@ -123,7 +124,7 @@ export default class ListItem extends Component {
                     <div className="col-md-6">
                         <div className="d-flex justify-content-between">
                             <h3 className="detail-strong">Movie List<MdKeyboardArrowDown /></h3>
-                            <Link to={"/movies/add"}><FaPlus className="add-link" size="2rem" /></Link>
+                            {/* <Link to={"/movies/add"}><FaPlus className="add-link" size="2rem" /></Link> */}
                         </div>
 
                         <ul className="list-group">

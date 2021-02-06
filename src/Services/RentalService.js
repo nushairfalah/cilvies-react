@@ -2,12 +2,12 @@ import httpClient from '../Common/Http'
 
 class RentalService {
     retrieveAll(title) {
-        if (title) {
-            return httpClient.get(`/movies/?title=${title}`)
-        } else {
-            return httpClient.get('/movies/')
-        }
-        // title ? (httpClient.get(`/movies/?title=${title}`)) : (httpClient.get('/movies/'))
+        return title ? httpClient.get(`/movies/?title=${title}`) : httpClient.get('/movies/')
+        // if (title) {
+        //     return httpClient.get(`/movies/?title=${title}`)
+        // } else {
+        //     return httpClient.get('/movies/')
+        // }
     }
     retrieveById(id) {
         return httpClient.get(`/movies/${id}`)
