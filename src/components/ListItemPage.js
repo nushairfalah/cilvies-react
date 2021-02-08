@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import RentalService from "../Services/RentalService";
 import { Link } from "react-router-dom";
-import { FaRegTrashAlt, FaPlus } from "react-icons/fa";
-import { GoEye, GoEyeClosed, GoSearch } from "react-icons/go";
+import { FaRegTrashAlt, FaPlus, FaRegPlusSquare } from "react-icons/fa";
+import { GoEye, GoEyeClosed } from "react-icons/go";
 import { RiEditLine } from "react-icons/ri"
 import { MdKeyboardArrowDown } from "react-icons/md";
 
@@ -31,9 +31,10 @@ export default class ListItem extends Component {
     retrieveList() {
         RentalService.retrieveAll()
             .then((response) => {
+                // const array = this.state.Lists
                 const data = response.data;
                 this.setState({
-                    Lists: data,
+                    Lists: data.reverse(),
                 })
             })
             .catch((error) => {
@@ -96,7 +97,7 @@ export default class ListItem extends Component {
             .then((response) => {
                 const data = response.data;
                 this.setState({
-                    Lists: data,
+                    Lists: data.reverse(),
                 })
             })
             .catch((error) => {
@@ -111,20 +112,19 @@ export default class ListItem extends Component {
             <>
                 <div className="list row">
 
-                    <div className="sticky-top col-md-12">
+                    <div className="col-md-7 m-auto">
                         <div className="input-group mb-4">
-                            <input type="text" className="form-control" value={searchTitle} onChange={this.onChangeSearch} placeholder="Search by title..." autoFocus />
-                            <div className="input-group-append">
-                                <button className="btn btn-outline-secondary" type="button" onClick={this.searchTitle}><GoSearch className="add-link" size="1.3rem" /></button>
-                                <button className="btn btn-outline-secondary" type="button"><Link to={"/movies/add"}><FaPlus className="add-link" size="1.3rem" /></Link></button>
-                            </div>
+                            <input type="search" className="form-control" value={searchTitle} onChange={this.onChangeSearch} onKeyPress={this.searchTitle} placeholder="Search by title..." autoFocus />
+                            {/* <span className="input-group-append">
+                                <div className="btn btn-outline-secondary border-left-0 border" onClick={this.searchTitle}><FaTimes /></div>
+                            </span> */}
                         </div>
                     </div>
 
                     <div className="col-md-6">
                         <div className="d-flex justify-content-between">
-                            <h3 className="detail-strong">Movie List<MdKeyboardArrowDown /></h3>
-                            {/* <Link to={"/movies/add"}><FaPlus className="add-link" size="2rem" /></Link> */}
+                            <h3 className="detail-strong">movie list<MdKeyboardArrowDown /></h3>
+                            <button className="btn"><Link to={"/movies/add"}><FaRegPlusSquare size="1.5rem" /></Link></button>
                         </div>
 
                         <ul className="list-group">
@@ -149,7 +149,7 @@ export default class ListItem extends Component {
                                 <h4 className="detail-strong">Detail</h4>
 
                                 <div className="group-detail">
-                                    <img className="size-image" src={currentList.imageurl} alt="Cover DVD" />
+                                    <img className="img-fluid size-image" src={currentList.imageurl} alt="Cover DVD" />
                                 </div>
                                 <div className="group-detail">
                                     <label className="detail-strong">
@@ -166,7 +166,7 @@ export default class ListItem extends Component {
 
                             </div>
                         ) : (
-                                <div>
+                                <div className="col-md-6">
                                     <h4 className="detail-strong">Detail</h4>
                                 </div>
                             )}
